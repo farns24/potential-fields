@@ -71,11 +71,13 @@ public abstract class PotentialField {
     public void printArrows() {
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[0].length; j++) {
-                if ((i == objectLocation[0] && j == objectLocation[1]) ||
-                        calcDistance(i, j) <= safeArea ||
-                        (field[i][j][0] == 0 && field[i][j][1] == 0)) {
+                if (i == objectLocation[0] && j == objectLocation[1]) {
+                    System.out.printf("G ");
+                } else if (calcDistance(i, j) <= safeArea) {
+                    System.out.printf("G ");
+                } else if (field[i][j][0] == 0 && field[i][j][1] == 0) {
                     System.out.printf("%d ", 0);
-                } else {
+                }  else {
                     String arrow = getArrow(calcAngle(field[i][j]), field[i][j][1]);
                     System.out.printf("%s ", arrow);
                 }

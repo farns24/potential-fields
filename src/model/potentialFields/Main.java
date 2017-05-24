@@ -5,9 +5,9 @@ package model.potentialFields;
  */
 public class Main {
     public static void main(String[] args) {
-        PotentialField field1 = new AttractionField(new int[] {5,5}, 20, 20);
-        PotentialField field2 = new RepulsionField(new int[] {15,15}, 20, 20);
-        PotentialField field3 = new RepulsionField(new int[] {1,1}, 20, 20);
+        PotentialField field1 = new AttractionField(new int[] {2,6}, 20, 20);
+        PotentialField field2 = new RepulsionField(new int[] {13,11}, 20, 20);
+        PotentialField field3 = new RepulsionField(new int[] {3,15}, 20, 20);
         CompositeField field = new CompositeField(20, 20, field1, field2, field3);
 //        RandomField field = new RandomField(20, 20);
         field.printVectors();

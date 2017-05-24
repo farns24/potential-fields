@@ -71,7 +71,7 @@ public abstract class PotentialField {
     public void printArrows() {
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[0].length; j++) {
-                if (i == objectLocation[0] && j == objectLocation[1]) {
+                if (j == objectLocation[0] && i == objectLocation[1]) {
                     System.out.printf("G ");
                 } else if (calcDistance(i, j) <= safeArea) {
                     System.out.printf("G ");

@@ -22,9 +22,9 @@ public class RepulsionField extends PotentialField {
 
     @Override
     protected int[] calcVector(int row, int col) {
-        if (row == objectLocation[0] && col == objectLocation[1]) return new int[] {0,0};
-        int xValue = objectLocation[1] - col;
-        int yValue = row - objectLocation[0];
+        if (row == objectLocation[1] && col == objectLocation[0]) return new int[] {0,0};
+        int xValue = objectLocation[0] - col;
+        int yValue = row - objectLocation[1];
 
         if (calcDistance(row, col) > 10) return new int[] {0, 0};
 

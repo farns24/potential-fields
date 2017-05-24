@@ -20,8 +20,8 @@ public class AttractionField extends PotentialField {
 
     @Override
     protected int[] calcVector(int row, int col) {
-        int xVal = objectLocation[1] - col;
-        int yVal = row - objectLocation[0];
+        int xVal = objectLocation[0] - col;
+        int yVal = row - objectLocation[1];
         if (calcDistance(row, col) <= safeArea) {
             xVal = 0;
             yVal = 0;

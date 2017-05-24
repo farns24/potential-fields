@@ -33,7 +33,7 @@ public class CompositeField extends PotentialField {
         int xValue = 0;
         int yValue = 0;
         for (PotentialField pF : fields) {
-            if (!(row == pF.getObjectLocation()[0] && col == pF.getObjectLocation()[1])) {
+            if (!(row == pF.getObjectLocation()[1] && col == pF.getObjectLocation()[0])) {
                 xValue += pF.getField()[row][col][0];
                 yValue += pF.getField()[row][col][1];
             } else {

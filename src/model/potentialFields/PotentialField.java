@@ -13,10 +13,10 @@ public abstract class PotentialField {
     protected double safeArea = 2.0;
     protected double maxSpeed = 8.0;
 
-    public PotentialField(int[] objectLocation, int height, int width) {
+    public PotentialField(int[] objectLocation, int height, int width, PotentialField... fields) {
         field = new int[height][width][2];
         this.objectLocation = objectLocation;
-        initialize();
+        initialize(fields);
     }
 
     public int[][][] getField() {
@@ -59,7 +59,7 @@ public abstract class PotentialField {
         }
     }
 
-    public void printSafeArea() {
+    public void printDistances() {
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[0].length; j++) {
                 System.out.printf("%6.2f  ", calcDistance(i,j));
@@ -68,7 +68,23 @@ public abstract class PotentialField {
         }
     }
 
-    protected abstract void initialize();
+    public void printArrows() {
+        for (int i = 0; i < field.length; i++) {
+            for (int j = 0; j < field[0].length; j++) {
+                if ((i == objectLocation[0] && j == objectLocation[1]) ||
+                        calcDistance(i, j) <= safeArea ||
+                        (field[i][j][0] == 0 && field[i][j][1] == 0)) {
+                    System.out.printf("%d ", 0);
+                } else {
+                    String arrow = getArrow(calcAngle(field[i][j]), field[i][j][1]);
+                    System.out.printf("%s ", arrow);
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    protected abstract void initialize(PotentialField... fields);
 
     protected abstract int[] calcVector(int row, int col);
 
@@ -87,5 +103,54 @@ public abstract class PotentialField {
         double firstTerm = Math.pow((objectLocation[0] - col), 2);
         double secTerm = Math.pow((objectLocation[1] - row), 2);
         return Math.sqrt(firstTerm+secTerm);
+    }
+
+    private double calcAngle(int[] vector) {
+        int[] a = new int[] {1,0};
+        double numerator = dotProduct(vector, a);
+        double denominator = calcLength(vector) * calcLength(a);
+        return Math.acos(numerator/denominator);
+    }
+
+    private double dotProduct(int[] a, int[] b) {
+        double sum = 0;
+        for (int i = 0; i < 2; i++) {
+            sum += a[i] * b[i];
+        }
+        return sum;
+    }
+
+    private double calcLength(int[] vector) {
+        double firstTerm = Math.pow(vector[0], 2);
+        double secTerm = Math.pow(vector[1], 2);
+        return Math.sqrt(firstTerm+secTerm);
+    }
+
+    private String getArrow(double angle, int y) {
+        if (y <= 0) {
+            if (angle < .4) {
+                return "\u2192";
+            } else if (angle < 1.2) {
+                return "\u2198";
+            } else if (angle < 1.9) {
+                return "\u2193";
+            } else if (angle < 2.5) {
+                return "\u2199";
+            } else {
+                return "\u2190";
+            }
+        } else {
+            if (angle < .4) {
+                return "\u2192";
+            } else if (angle < 1.2) {
+                return "\u2197";
+            } else if (angle < 1.9) {
+                return "\u2191";
+            } else if (angle < 2.5) {
+                return "\u2196";
+            } else {
+                return "\u2190";
+            }
+        }
     }
 }

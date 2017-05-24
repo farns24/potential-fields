@@ -12,7 +12,7 @@ public class RepulsionField extends PotentialField {
     }
 
     @Override
-    protected void initialize() {
+    protected void initialize(PotentialField... fields) {
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[0].length; j++) {
                 field[i][j] = calcVector(i,j);
@@ -36,9 +36,7 @@ public class RepulsionField extends PotentialField {
         double mag = calcMagnitude(vector);
         if (mag == 0) return 0;
         int value;
-        if (mag >= cushion) {
-            value = 0;
-        } else if (mag >= maxSpeed) {
+        if (mag >= maxSpeed) {
             value = (int)Math.round(maxSpeed);
         } else {
             value = (int)Math.round(mag-2);

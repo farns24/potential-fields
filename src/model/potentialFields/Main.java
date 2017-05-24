@@ -5,14 +5,18 @@ package model.potentialFields;
  */
 public class Main {
     public static void main(String[] args) {
-        model.potentialFields.PotentialField field = new model.potentialFields.AttractionField(new int[] {3,3}, 10, 10);
-//        PotentialField field = new RepulsionField(new int[] {3,3}, 100, 100);
+        PotentialField field1 = new model.potentialFields.AttractionField(new int[] {5,5}, 20, 20);
+        PotentialField field2 = new RepulsionField(new int[] {15,15}, 20, 20);
+        PotentialField field3 = new RepulsionField(new int[] {1,1}, 20, 20);
+        CompositeField field = new CompositeField(20, 20, field1, field2, field3);
         field.printVectors();
         System.out.println();
         field.printMagnitudes();
         System.out.println();
         field.printSpeeds();
         System.out.println();
-        field.printSafeArea();
+        field.printDistances();
+        System.out.println();
+        field.printArrows();
     }
 }

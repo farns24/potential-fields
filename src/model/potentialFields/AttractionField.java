@@ -10,7 +10,7 @@ public class AttractionField extends PotentialField {
     }
 
     @Override
-    protected void initialize() {
+    protected void initialize(PotentialField... fields) {
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[0].length; j++) {
                 field[i][j] = calcVector(i,j);
@@ -22,6 +22,10 @@ public class AttractionField extends PotentialField {
     protected int[] calcVector(int row, int col) {
         int xVal = objectLocation[1] - col;
         int yVal = row - objectLocation[0];
+        if (calcDistance(row, col) <= safeArea) {
+            xVal = 0;
+            yVal = 0;
+        }
         return new int[] {xVal, yVal};
     }
 
@@ -29,8 +33,7 @@ public class AttractionField extends PotentialField {
     protected int calcSpeed(int[] vector) {
         double mag = calcMagnitude(vector);
         int value;
-        if (mag <= safeArea) value = 0;
-        else if (mag >= maxSpeed) value = (int)Math.round(maxSpeed);
+        if (mag >= maxSpeed) value = (int)Math.round(maxSpeed);
         else value = (int)Math.round(mag);
         return value;
     }

@@ -12,6 +12,9 @@ public class Lab2 {
         //  get robot position
         //  get potential field vector at robot's position
         //  set robots orientation and speed determined from vector
+        //  if robots speed is 0 and not at goal
+        //      get random field vector at robot's position
+        //      set robots orientation and speed determined from vector
         //end
     }
 }

@@ -5,10 +5,12 @@ package model.potentialFields;
  */
 public class Main {
     public static void main(String[] args) {
-        PotentialField field1 = new AttractionField(new int[] {2,6}, 20, 20);
-        PotentialField field2 = new RepulsionField(new int[] {13,11}, 20, 20);
-        PotentialField field3 = new RepulsionField(new int[] {3,15}, 20, 20);
-        CompositeField field = new CompositeField(20, 20, field1, field2, field3);
+        int height = 100;
+        int width = 100;
+        PotentialField field1 = new AttractionField(new int[] {20,42}, height, width);
+        PotentialField field2 = new RepulsionField(new int[] {10,60}, height, width);
+        PotentialField field3 = new RepulsionField(new int[] {41,49}, height, width);
+        CompositeField field = new CompositeField(height, width, field1, field2, field3);
 //        RandomField field = new RandomField(20, 20);
         field.printVectors();
         System.out.println();

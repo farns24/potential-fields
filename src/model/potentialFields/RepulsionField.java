@@ -46,8 +46,8 @@ public class RepulsionField extends PotentialField {
     }
 
     private int[] invert(int xValue, int yValue) {
-        int newX = 10 - Math.abs(xValue);
-        int newY = 10 - Math.abs(yValue);
+        int newX = field[0].length - Math.abs(xValue);
+        int newY = field.length - Math.abs(yValue);
 
         if (xValue > 0) newX = -newX;
         if (yValue > 0) newY = -newY;

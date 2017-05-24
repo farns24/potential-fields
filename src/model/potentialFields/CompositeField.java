@@ -30,6 +30,9 @@ public class CompositeField extends PotentialField {
 
     @Override
     protected int[] calcVector(int row, int col) {
+        if (row == 8 && col == 8) {
+            int a = 0;
+        }
         int xValue = 0;
         int yValue = 0;
         for (PotentialField pF : fields) {

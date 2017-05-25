@@ -1,5 +1,7 @@
 package model.potentialFields;
 
+import java.util.ArrayList;
+
 /**
  * Created by michael on 5/23/17.
  */
@@ -8,11 +10,11 @@ public class RepulsionField extends PotentialField {
     private double cushion = 12.5;
 
     public RepulsionField(int[] objectLocation, int height, int width) {
-        super(objectLocation, height, width);
+        super(objectLocation, height, width, null);
     }
 
     @Override
-    protected void initialize(PotentialField... fields) {
+    protected void initialize(ArrayList<PotentialField> fields) {
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[0].length; j++) {
                 field[i][j] = calcVector(i,j);

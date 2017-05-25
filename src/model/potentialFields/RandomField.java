@@ -1,5 +1,6 @@
 package model.potentialFields;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -12,11 +13,11 @@ public class RandomField extends PotentialField {
     Random rand;
 
     public RandomField(int height, int width) {
-        super(new int[] {0,0}, height, width);
+        super(new int[] {0,0}, height, width, null);
     }
 
     @Override
-    protected void initialize(PotentialField... fields) {
+    protected void initialize(ArrayList<PotentialField> fields) {
         randomValues = new int[] {-1,0,1};
         baseValue = 3;
         rand = new Random();

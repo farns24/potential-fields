@@ -1,5 +1,7 @@
 package model.potentialFields;
 
+import java.util.ArrayList;
+
 /**
  * Created by michael on 5/23/17.
  */
@@ -13,7 +15,7 @@ public abstract class PotentialField {
     protected double safeArea = 2.0;
     protected double maxSpeed = 8.0;
 
-    public PotentialField(int[] objectLocation, int height, int width, PotentialField... fields) {
+    public PotentialField(int[] objectLocation, int height, int width, ArrayList<PotentialField> fields) {
         field = new int[height][width][2];
         this.objectLocation = objectLocation;
         initialize(fields);
@@ -86,7 +88,7 @@ public abstract class PotentialField {
         }
     }
 
-    protected abstract void initialize(PotentialField... fields);
+    protected abstract void initialize(ArrayList<PotentialField> fields);
 
     protected abstract int[] calcVector(int row, int col);
 

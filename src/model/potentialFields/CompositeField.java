@@ -8,12 +8,12 @@ import java.util.ArrayList;
 public class CompositeField extends PotentialField {
     ArrayList<PotentialField> fields;
 
-    public CompositeField(int height, int width, PotentialField... fields) {
+    public CompositeField(int height, int width, ArrayList<PotentialField> fields) {
         super(null, height, width, fields);
     }
 
     @Override
-    protected void initialize(PotentialField... fields) {
+    protected void initialize(ArrayList<PotentialField> fields) {
         this.fields = new ArrayList<PotentialField>();
         for (PotentialField pF: fields) {
             this.fields.add(pF);

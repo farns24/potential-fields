@@ -139,6 +139,7 @@ public class TelnetProxy implements ITelnetProxy {
 		String cmd = "where";
 		String json = send(cmd);
 		json= json.replaceFirst("\"time\": \\d+(\\.\\d+)?,", "");
+		json= json.replaceFirst(", \"time\": \\d+(\\.\\d+)?", "");
 		return gson.fromJson(json, LocationScape.class);
 	}
 
@@ -155,6 +156,7 @@ public class TelnetProxy implements ITelnetProxy {
 		String cmd = "where others";
 		String json = send(cmd);
 		json= json.replaceFirst("\"time\": \\d+(\\.\\d+)?,", "");
+		json= json.replaceFirst(", \"time\": \\d+(\\.\\d+)?", "");
 		return gson.fromJson(json, LocationScape.class);
 	}
 

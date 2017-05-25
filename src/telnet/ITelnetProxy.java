@@ -9,15 +9,15 @@ import model.RobotLocation;
  *
  */
 public interface ITelnetProxy {
-	public void connectToBot();
+	public void connectToBot() throws TaskException;
 	
-	public void speed(double left,double right);
+	public void speed(int left,int right) throws TaskException ;
 	
-	public LocationScape where();
+	public LocationScape where() throws TaskException;
 	
-	public RobotLocation whereRobot();
+	public RobotLocation whereRobot() throws TaskException;
 	
-	public LocationScape whereOthers();
+	public LocationScape whereOthers() throws TaskException;
 	
-	public void shutdown();
+	public void shutdown() throws TaskException;
 }

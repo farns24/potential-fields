@@ -77,21 +77,10 @@ public class Lab2 {
 	    		double goalTheta = rob.getGoalTheta(vect);
 	    		
 	    		MotionState command = MyUtils.getOrders(robTheta,goalTheta);
-	    		
-	    		switch (command) {
-				case GO_COUNTER_CLOCKWISE:
-					proxy.speed(4, -4);
-					break;
-				case GO_CLOCKWISE:
-					proxy.speed(-4, 4);
-					break;
-				case GO_FORWARD:
-					proxy.speed(7, 7);
-					break;
-				default:
-					break;
-				
-				}
+
+	    		command.run(proxy);
+
+
 	        //  set robots orientation and speed determined from vector
 	        //  if robots speed is 0 and not at goal
 	        //      get random field vector at robot's position

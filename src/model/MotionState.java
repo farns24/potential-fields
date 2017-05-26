@@ -1,8 +1,8 @@
 package model;
 
-public enum MotionState {
+import telnet.ITelnetProxy;
 
-	GO_CLOCKWISE,
-	GO_COUNTER_CLOCKWISE,
-	GO_FORWARD
+public abstract class MotionState {
+
+	public abstract void run(ITelnetProxy proxy);
 }

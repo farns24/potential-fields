@@ -19,7 +19,7 @@ public class MyUtils {
 		//Test for equality
 		if (Math.abs(diff)<Math.PI/6.0)
 		{
-			return MotionState.GO_FORWARD;
+			return new GoForwardTask();
 		}
 		
 		
@@ -28,7 +28,7 @@ public class MyUtils {
 		{
 			if (diff<0.0)
 			{
-				return MotionState.GO_CLOCKWISE;
+				return new GoClockWiseTask(diff);
 			}
 		}
 		//Quadrent 3
@@ -36,7 +36,7 @@ public class MyUtils {
 		{
 			if (diff>0.0)
 			{
-				return MotionState.GO_CLOCKWISE;
+				return new GoClockWiseTask(diff);
 			}
 		}
 		//Quadrent 2
@@ -44,7 +44,7 @@ public class MyUtils {
 		{
 			if (diff<0.0)
 			{
-				return MotionState.GO_CLOCKWISE;
+				return new GoClockWiseTask(diff);
 			}
 		}
 		//Quadrent 1
@@ -52,14 +52,14 @@ public class MyUtils {
 		{
 			if (diff>0.0)
 			{
-				return MotionState.GO_CLOCKWISE;
+				return new GoClockWiseTask(diff);
 			}
 		}
 		
 		
 		
 		
-		return MotionState.GO_COUNTER_CLOCKWISE;
+		return new GoCounterClockWiseTask(diff);//MotionState.GO_COUNTER_CLOCKWISE;
 	}
 
 	private static double makePositive(double robTheta) {

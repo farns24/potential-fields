@@ -28,7 +28,14 @@ public class AttractionField extends PotentialField {
             xVal = 0;
             yVal = 0;
         }
-        return new int[] {xVal, yVal};
+
+        double mag = calcMagnitude(new int[] {xVal, yVal});
+        if (mag > 20) {
+            xVal /= (mag/20);
+            yVal /= (mag/20);
+        }
+
+        return new int[] {xVal*2, yVal*2};
     }
 
     @Override

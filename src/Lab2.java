@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Timer;
 
 import org.apache.commons.net.telnet.TelnetClient;
 
@@ -79,7 +80,6 @@ public class Lab2 {
 	    		
 	    		switch (command) {
 				case GO_COUNTER_CLOCKWISE:
-					
 					proxy.speed(4, -4);
 					break;
 				case GO_CLOCKWISE:

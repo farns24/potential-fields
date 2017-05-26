@@ -7,27 +7,26 @@ import java.util.ArrayList;
  */
 public class Main {
     public static void main(String[] args) {
-        int height = 10;
-        int width = 10;
-        PotentialField field = new AttractionField(new int[] {4,4}, height, width);
-        //PotentialField field2 = new RepulsionField(new int[] {10,60}, height, width);
-        //PotentialField field3 = new RepulsionField(new int[] {41,49}, height, width);
-        //CompositeField field = new CompositeField(height, width, new ArrayList<PotentialField>(new PotentialField[]{field1}));
+        int height = 50;
+        int width = 50;
+
+        ArrayList<PotentialField> fields = new ArrayList<>();
+        fields.add(new AttractionField(new int[] {5,5}, height, width));
+//        fields.add(new RepulsionField(new int[] {20,30}, height, width));
+//        fields.add(new RepulsionField(new int[] {30,20}, height, width));
+//        fields.add(new TangentialField(new int[] {30,20}, height, width));
+        fields.add(new TangentialField(new int[] {30,20}, height, width));
+        CompositeField field = new CompositeField(height, width, fields);
 //        RandomField field = new RandomField(20, 20);
-        field.printVectors();
-        System.out.println();
+//        field.printVectors();
+//        System.out.println();
 //        field.printMagnitudes();
 //        System.out.println();
 //        field.printSpeeds();
 //        System.out.println();
 //        field.printDistances();
 //        System.out.println();
-//        field.printArrows();
-        
-        while (true)
-        {
-        	
-        }
+        field.printArrows();
         
     }
 }

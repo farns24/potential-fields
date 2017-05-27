@@ -12,7 +12,7 @@ public abstract class PotentialField {
      */
     protected int[][][] field;
     protected int[] objectLocation;
-    protected double safeArea = 2.0;
+    protected double safeArea = 12.0;
     protected double maxSpeed = 8.0;
 
     public PotentialField(int[] objectLocation, int height, int width, ArrayList<PotentialField> fields) {

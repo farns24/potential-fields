@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Timer;
+import java.util.TimerTask;
 
 import org.apache.commons.net.telnet.TelnetClient;
 
@@ -25,6 +26,8 @@ public class Lab2 {
     public static void main(String[] args) {
         //Main
         //
+    	
+    	
     	
     	ITelnetProxy proxy = new TelnetProxy();
     	try {
@@ -55,30 +58,37 @@ public class Lab2 {
 			}
 			
 			CompositeField field = new CompositeField(height, width, fields);
-		
+			//testAngularVelocity(proxy);
+			//throw new RuntimeException("");
 	        //while (true)
+			
 	    	while(true){
 	        //  get robot position
-	    		RobotLocation rob = proxy.whereRobot();
-	    		 if (rob==null||rob.getCenter()==null)
-	    		 {
-	    			 continue;
-	    		 }
-	        //  get potential field vector at robot's position
-	    		int[] vect = rob.getPFVector(field);
-	    		
-	    		if (MyUtils.madeIt(vect))
-	    		{
-	    			proxy.speed(0, 0);
-	    			break;
-	    		}
-	    		
-	    		double robTheta = rob.getOrientation();
-	    		double goalTheta = rob.getGoalTheta(vect);
-	    		
-	    		MotionState command = MyUtils.getOrders(robTheta,goalTheta);
+	    		try {
+					RobotLocation rob = proxy.whereRobot();
+					 if (rob==null||rob.getCenter()==null)
+					 {
+						 continue;
+					 }
+      //  get potential field vector at robot's position
+					int[] vect = rob.getPFVector(field);
+					
+					if (MyUtils.madeIt(vect))
+					{
+						proxy.speed(0, 0);
+						break;
+					}
+					
+					double robTheta = rob.getOrientation();
+					double goalTheta = rob.getGoalTheta(vect);
+					
+					MotionState command = MyUtils.getOrders(robTheta,goalTheta);
 
-	    		command.run(proxy);
+					command.run(proxy);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
 
 	        //  set robots orientation and speed determined from vector
@@ -92,4 +102,41 @@ public class Lab2 {
 		}
         //end
     }
+
+	private static void testAngularVelocity(ITelnetProxy proxy) {
+		try {
+			RobotLocation before = proxy.whereRobot();
+		    proxy.speed(0, 0);
+			proxy.speed(2, 7);
+			
+			Timer t = new Timer();
+			t.schedule(new TimerTask() {
+				
+				@Override
+				public void run() {
+					RobotLocation after;
+					try {
+						after = proxy.whereRobot();
+						System.out.println(before.toString());
+						System.out.println(after.toString());
+						System.out.println(Math.toDegrees((before.getOrientation()-after.getOrientation())));
+						proxy.speed(0, 0);
+					} catch (TaskException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+				}
+			}, 3800);
+			
+			
+			
+		} catch (TaskException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+	}
 }

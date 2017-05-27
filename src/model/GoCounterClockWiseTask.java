@@ -5,28 +5,35 @@ import telnet.TaskException;
 
 public class GoCounterClockWiseTask extends MotionState {
 
-	private int angularVelocity;
-	private int diff;
+	
+	
 	
 	public GoCounterClockWiseTask(double diff) {
-		this.diff = (int) diff *100;
+		this.diff = (double) diff *100.0;
 	}
 
 
 	@Override
 	public void run(ITelnetProxy proxy) {
 		try {
-			Thread.sleep(diff * angularVelocity);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			proxy.speed(7, 2);
+			if (diff>30)
+			{
+			    proxy.speed(2, 10);
+			}
+			else
+			{
+				proxy.speed(2, 5);
+			}
+			myWait();
+			proxy.speed(7,7);
+			myWait(1000);
+	
 		} catch (TaskException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	
 	}
 
 }

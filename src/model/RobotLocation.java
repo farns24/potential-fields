@@ -1,5 +1,7 @@
 package model;
 
+import java.util.Arrays;
+
 import model.potentialFields.PotentialField;
 
 public class RobotLocation {
@@ -19,7 +21,7 @@ public class RobotLocation {
 	}
 
 	public double getOrientation() {
-		return Math.atan2(orientation[1],orientation[0]);//orientation;
+		return Math.atan2(orientation[1],orientation[0]* -1.0);//orientation;
 	}
 
 	public void setOrientation(double[] orientation) {
@@ -32,6 +34,13 @@ public class RobotLocation {
         int y = (int)pos[1]/10;
         return new int[] {x,y};
     }
+	@Override
+	public String toString() {
+		return "RobotLocation [corners=" + Arrays.toString(corners)
+				+ ", orientation=" + Arrays.toString(orientation) + ", center="
+				+ Arrays.toString(center) + "]";
+	}
+
 	public int[] getCenter() {
 		if (center==null)
 		{

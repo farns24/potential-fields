@@ -23,7 +23,7 @@ public class GoClockWiseTask extends MotionState {
 			 */
 			if (diff>30)
 			{
-			    proxy.speed(10, 2);
+			    proxy.speed(7, 2);
 			}
 			else
 			{

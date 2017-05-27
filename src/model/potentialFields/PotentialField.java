@@ -33,7 +33,7 @@ public abstract class PotentialField {
         this.objectLocation = objectLocation;
     }
 
-    public void printVectors() {
+    public void printVectors() {//
         for (int i = 0; i < field.length; i++) {
             for (int j = 0; j < field[0].length; j++) {
                 System.out.printf("[%3d, %3d]  ", field[i][j][0], field[i][j][1]);
@@ -75,7 +75,7 @@ public abstract class PotentialField {
             for (int j = 0; j < field[0].length; j++) {
                 if (j == objectLocation[0] && i == objectLocation[1]) {
                     System.out.printf("G ");
-                } else if (calcDistance(i, j) <= safeArea) {
+                } else if (calcDistance(i, j) <= safeArea && getClass() == AttractionField.class) {
                     System.out.printf("G ");
                 } else if (field[i][j][0] == 0 && field[i][j][1] == 0) {
                     System.out.printf("%d ", 0);

@@ -27,7 +27,7 @@ public class TangentialField extends PotentialField {
         int xValue = objectLocation[0] - col;
         int yValue = row - objectLocation[1];
 
-        if (calcDistance(row, col) > 10) return new int[] {0, 0};
+        if (calcDistance(row, col) > 40) return new int[] {0, 0};
 
         return getPerpendicular(invert(xValue,yValue));
     }

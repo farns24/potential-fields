@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class RepulsionField extends PotentialField {
 
-    private double cushion = 12.5;
+    private double cushion = 15;
 
     public RepulsionField(int[] objectLocation, int height, int width) {
         super(objectLocation, height, width, null);
@@ -28,7 +28,7 @@ public class RepulsionField extends PotentialField {
         int xValue = objectLocation[0] - col;
         int yValue = row - objectLocation[1];
 
-        if (calcDistance(row, col) > 10) return new int[] {0, 0};
+        if (calcDistance(row, col) > cushion) return new int[] {0, 0};
 
         return invert(xValue,yValue);
     }

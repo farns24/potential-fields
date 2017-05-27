@@ -18,7 +18,7 @@ public class GoCounterClockWiseTask extends MotionState {
 		try {
 			if (diff>30)
 			{
-			    proxy.speed(2, 10);
+			    proxy.speed(2, 7);
 			}
 			else
 			{

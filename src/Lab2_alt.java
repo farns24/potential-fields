@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.apache.commons.lang3.time.StopWatch;
 import org.apache.commons.net.telnet.TelnetClient;
 
 import telnet.ITelnetProxy;
@@ -22,45 +23,35 @@ import model.potentialFields.*;
  * 
  * Try matching direction of goal to 
  */
-public class Lab2 {
+public class Lab2_alt {
     public static void main(String[] args) {
-        //Main
-        String goalID = "3";
+    	Lab2_alt l = new Lab2_alt();
     	ITelnetProxy proxy = new TelnetProxy();
     	try {
 			proxy.connectToBot();
 			LocationScape map = proxy.where();
     
-			//initialize potential fields
-			ArrayList<PotentialField> fields = new ArrayList<PotentialField>();
+			//intialize potential fields
+			RobotLocation goal = map.get("3");
+    	
 			int height = 160;
 			int width = 160;
-			RobotLocation goal = map.get(goalID);	//Goal location
-			AttractionField aF = new AttractionField(goal.getCenter(), height, width);
-			fields.add(aF);
+			PotentialField field = new AttractionField(goal.getCenter(), height, width);
 			
-			for (String key :map.keySet())
-			{
-				RobotLocation loc = map.get(key);
-				
-				if (key.equals("robot") || key.equals(goalID))
-				{
-					continue;	//Ignore robot and goal markers
-				}
-				RepulsionField rF = new RepulsionField(loc.getCenter(), height, width);	//Add obstacles
-				fields.add(rF);
-			}
-			
-			CompositeField field = new CompositeField(height, width, fields);
-			
-	    	while(true){
+			while(true){
 	    		//  get robot position
 	    		try {
+	    			map = proxy.where();
+	    			goal = map.get("3");
+	    			if (goal == null || goal.getCenter() == null) continue;
+	    			
+	    			if(field.getClass() == AttractionField.class) {
+	    				field = new AttractionField(goal.getCenter(), height, width);
+	    			} else {
+	    				field = new RepulsionField(goal.getCenter(), height, width);
+	    			}
 					RobotLocation rob = proxy.whereRobot();
-					if (rob==null||rob.getCenter()==null)
-					{
-						continue;
-					}
+					if (rob==null||rob.getCenter()==null) continue;
 					
 					//  get potential field vector at robot's position
 					int[] vect = rob.getPFVector(field);
@@ -68,8 +59,11 @@ public class Lab2 {
 					//Stop if at goal
 					if (MyUtils.madeIt(vect))
 					{
-						proxy.speed(0, 0);
-						break;
+						if(field.getClass() == AttractionField.class) {
+							field = new RepulsionField(goal.getCenter(), height, width);
+						} else {
+							field = new AttractionField(goal.getCenter(), height, width);
+						}
 					}
 					
 					double robTheta = rob.getOrientation();
@@ -85,7 +79,12 @@ public class Lab2 {
     	} catch (TaskException e) {
 			e.printStackTrace();
 		}
-        //end	
-		
-	}
+        //end
+    }
+    
+    public double calcTheta(double x, double y) {
+    	double theta = Math.atan2(y,x);
+    	if (theta < 0) theta += (2*Math.PI);
+    	return theta;
+    }
 }

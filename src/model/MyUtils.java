@@ -11,8 +11,8 @@ public class MyUtils {
 		robTheta = makePositive(robTheta);
 		goalTheta = makePositive(goalTheta);
 	
-		System.out.println("Robot Direction : " +robTheta);
-		System.out.println("Goal Direction : " + goalTheta);
+//		System.out.println("Robot Direction : " +robTheta);
+//		System.out.println("Goal Direction : " + goalTheta);
 		//assert(robTheta>=0.0);
 		//assert(robTheta<= 2.0 * Math.PI);
 		

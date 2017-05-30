@@ -7,10 +7,11 @@ import java.util.ArrayList;
  */
 public class RepulsionField extends PotentialField {
 
-    private double cushion = 15;
+    //cushion = 15.0;
 
     public RepulsionField(int[] objectLocation, int height, int width) {
         super(objectLocation, height, width, null);
+        
     }
 
     @Override
@@ -24,6 +25,7 @@ public class RepulsionField extends PotentialField {
 
     @Override
     protected int[] calcVector(int row, int col) {
+    	//If the robot is close to the obstical, return ground zero
         if (row == objectLocation[1] && col == objectLocation[0]) return new int[] {0,0};
         int xValue = objectLocation[0] - col;
         int yValue = row - objectLocation[1];

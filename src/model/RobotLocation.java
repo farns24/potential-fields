@@ -57,6 +57,7 @@ public class RobotLocation {
         int[] pFLocation = getCenter();
         int row = pFLocation[1];
         int col = pFLocation[0];
+        System.out.println("Field = " +Arrays.toString( pF.getField()[row][col]));
         return pF.getField()[row][col];
     }
     

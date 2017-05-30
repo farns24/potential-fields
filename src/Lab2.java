@@ -38,7 +38,7 @@ public class Lab2 {
 			RobotLocation goal = map.get(goalID);	//Goal location
 			AttractionField aF = new AttractionField(goal.getCenter(), height, width);
 			fields.add(aF);
-			
+			//aF.printArrows();
 			for (String key :map.keySet())
 			{
 				RobotLocation loc = map.get(key);
@@ -48,6 +48,7 @@ public class Lab2 {
 					continue;	//Ignore robot and goal markers
 				}
 				RepulsionField rF = new RepulsionField(loc.getCenter(), height, width);	//Add obstacles
+				rF.printArrows();
 				fields.add(rF);
 			}
 			

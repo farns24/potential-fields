@@ -14,7 +14,8 @@ public abstract class PotentialField {
     protected int[] objectLocation;
     protected double safeArea = 12.0;
     protected double maxSpeed = 8.0;
-
+    protected double cushion = 15.0;
+    
     public PotentialField(int[] objectLocation, int height, int width, ArrayList<PotentialField> fields) {
         field = new int[height][width][2];
         this.objectLocation = objectLocation;
@@ -106,7 +107,8 @@ public abstract class PotentialField {
     protected double calcDistance(int row, int col) {
         double firstTerm = Math.pow((objectLocation[0] - col), 2);
         double secTerm = Math.pow((objectLocation[1] - row), 2);
-        return Math.sqrt(firstTerm+secTerm);
+        double distance = Math.sqrt(firstTerm+secTerm);
+        return distance;
     }
 
     private double calcAngle(int[] vector) {
